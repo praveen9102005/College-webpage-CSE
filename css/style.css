@@ -18,7 +18,7 @@ body {
     color: #df0e0e;
     line-height: 1.5;
     overflow-x: hidden;
-    background-image: url('/collegephoto.jpg');
+    background-image: url('/Images/collegephoto.jpg');
     background-size: cover;
     background-attachment: fixed;
     background-clip: border-box;
@@ -978,4 +978,63 @@ footer {
     color: #2980b9;
     text-decoration: underline;
 }
+/* Vision Section */
+.vision-section {
+    padding: 60px 0;
+    background: transparent;
+    text-align: center;
+}
 
+.section-vision {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: skyblue;
+}
+
+.section-text {
+    font-size: 18px;
+    width: 80%;
+    margin: 0 auto;
+    line-height: 1.7;
+    color: whitesmoke;
+}
+
+/* Mission Section */
+.mission-section {
+    padding: 60px 0;
+    backdrop-filter: blur(100px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: whitesmoke;
+}
+
+.mission-list {
+    width: 80%;
+    margin: 0 auto;
+    font-size: 18px;
+    line-height: 1.8;
+
+    padding-left: 20px;
+}
+
+.mission-list li {
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 10px;
+}
+
+.mission-list li::before {
+    font-weight: bold;
+    margin-right: 8px;
+}
+.container_blur{
+    background: rgba(255, 255, 255, 0.12); 
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 15px;
+    padding: 40px;
+    width: 85%;
+    margin: 0 auto;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
