@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - Department of Computer Science and Engineering</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <img src="../Collegelogo.png" alt="College Logo" class="college-logo">
+                <div class="logo-text">
+                     <h1>MAHENDRA COLLEGE OF ENGINEERING</h1>
+                    <h1>Department of Computer Science and Engineering</h1>
+                    <p>Excellence in Education and Research</p>
+                </div>
+            </div>
+            <nav>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul>
+                    <li><a href="../index.html" class="nav-link">Home</a></li>
+                    <li><a href="faculty.html" class="nav-link">Faculty</a></li>
+                    <li><a href="login.html" class="nav-link">Login</a></li>
+                    <li><a href="labs.html" class="nav-link">Labs</a></li>
+                    <li><a href="achievements.html" class="nav-link">Achievements</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<!-- ✅ SIGNUP SECTION (SAME DESIGN AS LOGIN) -->
+<section class="login-container">
+    <div class="login-wrapper">
+
+        <!-- ✅ STUDENT SIGNUP -->
+        <div class="auth-panel learner-auth">
+            <div class="panel-header">
+                <div class="auth-icon learner-auth-icon">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <h2>Student Signup</h2>
+                <p class="panel-subtitle">Create your student account</p>
+            </div>
+
+            <form class="auth-form" id="studentSignupForm">
+                <div class="input-field">
+                    <label>Full Name</label>
+                    <input type="text" id="sname" placeholder="Enter your name" required>
+                </div>
+
+                <div class="input-field">
+                    <label>Email</label>
+                    <input type="email" id="semail" placeholder="Enter your email" required>
+                </div>
+
+                <div class="input-field">
+                    <label>Set Password</label>
+                    <input type="password" id="spassword" placeholder="Create password" required>
+                </div>
+
+                <button type="submit" class="auth-btn learner-auth-btn">
+                    Create Student Account
+                </button>
+            </form>
+
+            <div class="auth-divider">or</div>
+
+            <div class="panel-switcher">
+                Already have an account?
+                <a href="login.html" class="switch-panel-btn">Login Here</a>
+            </div>
+        </div>
+
+        <!-- Spacer -->
+        <div class="login-spacer"></div>
+
+        <!-- ✅ FACULTY SIGNUP -->
+        <div class="auth-panel instructor-auth">
+            <div class="panel-header">
+                <div class="auth-icon instructor-auth-icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <h2>Faculty Signup</h2>
+                <p class="panel-subtitle">Create your faculty account</p>
+            </div>
+
+            <form class="auth-form" id="teacherSignupForm">
+                <div class="input-field">
+                    <label>Full Name</label>
+                    <input type="text" id="tname" placeholder="Enter your name" required>
+                </div>
+
+                <div class="input-field">
+                    <label>Email</label>
+                    <input type="email" id="temail" placeholder="Enter your email" required>
+                </div>
+
+                <div class="input-field">
+                    <label>Set Password</label>
+                    <input type="password" id="tpassword" placeholder="Create password" required>
+                </div>
+
+                <button type="submit" class="auth-btn instructor-auth-btn">
+                    Create Faculty Account
+                </button>
+            </form>
+
+            <div class="auth-divider">or</div>
+
+            <div class="panel-switcher">
+                Already have an account?
+                <a href="login.html" class="switch-panel-btn">Login Here</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ✅ CONNECT SIGNUP BACKEND -->
+<script type="module" src="../js/signup.js"></script>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Chennai Highway
+Minnampalli,
+Salem - 636106,
+Tamilnadu, India</p>
+                <p><i class="fas fa-phone"></i> 0427-248288</p>
+                <p><i class="fas fa-envelope"></i> info@mahendrainstitutions.com</p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <a href="faculty.html" class="nav-link">Faculty</a>
+                <a href="login.html" class="nav-link">Login</a>
+                <a href="labs.html" class="nav-link">Labs</a>
+                <a href="achievements.html" class="nav-link">Achievements</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2025 Department of Computer Science and Engineering. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="../js/navigation.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/achievements.js"></script>
+
+</body>
+</html>
