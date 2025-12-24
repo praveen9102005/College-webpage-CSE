@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>eBooks — Department of CSE</title>
+  <link rel="stylesheet" href="../css/style.css"> <!-- existing site CSS -->
+  <link rel="stylesheet" href="ebooks.css">       <!-- new page CSS -->
+</head>
+<body>
+
+  <!-- header (reuse your site's header or copy existing header) -->
+  <header><!-- ... your header ... --></header>
+  <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">🌙</button>
+
+  <main class="ebooks-main">
+    <section class="ebooks-hero">
+      <h1>College eBooks Library</h1>
+      <p>Search and download textbooks, lab manuals and reference PDFs for all subjects.</p>
+
+      <div class="search-row">
+        <input id="searchInput" type="search" placeholder="Search by title, author, or file name" />
+        <select id="subjectFilter">
+          <option value="">All subjects</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="ebooks-list-wrap">
+      <div id="subjectsSidebar" class="subjects-sidebar">
+        <h3>Subjects</h3>
+        <ul id="subjectList"></ul>
+      </div>
+
+      <div class="books-grid-wrap">
+        <div id="booksGrid" class="books-grid">
+          <!-- JS will inject book cards here -->
+        </div>
+
+        <div id="noResults" class="no-results" hidden>
+          No ebooks found. Try another search or subject.
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+
+  <!-- Firebase is optional but recommended for dynamic listing -->
+  <!-- If you use Firebase init elsewhere on the site, auth & db are available on window -->
+  <script type="module" src="../js/ebooks.js"></script>
+  <script>
+    const toggleBtn = document.getElementById("themeToggle");
+    const body = document.body;
+  
+    const savedTheme = localStorage.getItem("theme") || "light";
+    body.setAttribute("data-theme", savedTheme);
+    toggleBtn.textContent = savedTheme === "dark" ? "☀️" : "🌙";
+  
+    toggleBtn.addEventListener("click", () => {
+      const isDark = body.getAttribute("data-theme") === "dark";
+      const newTheme = isDark ? "light" : "dark";
+  
+      body.setAttribute("data-theme", newTheme);
+      localStorage.setItem("theme", newTheme);
+      toggleBtn.textContent = newTheme === "dark" ? "☀️" : "🌙";
+    });
+  </script>
+  
+</body>
+</html>
