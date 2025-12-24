@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Admin — Upload eBook</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .admin-wrap { max-width:880px; margin:28px auto; padding:18px; background:white; border-radius:10px; box-shadow:0 8px 30px rgba(2,6,23,0.06); }
+    label{display:block;margin:8px 0 4px;}
+    input, select, textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6eef7}
+    .row{display:flex;gap:12px}
+    .col{flex:1}
+    button{background:#0ea5e9;color:white;border:none;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+  </style>
+</head>
+<body>
+
+  <header><!-- optional header --></header>
+
+  <main class="admin-wrap">
+    <h2>Admin — Upload eBook</h2>
+
+    <div id="authStatus">Checking authentication…</div>
+
+    <form id="uploadForm">
+
+      <label for="title">Title</label>
+      <input id="title" placeholder="Book title" required>
+
+      <label for="author">Author</label>
+      <input id="author" placeholder="Author">
+
+      <div class="row">
+        <div class="col">
+          <label for="subject">Subject</label>
+          <input id="subject" placeholder="e.g. OS, DBMS, Networks" required>
+        </div>
+        <div class="col">
+          <label for="year">Year</label>
+          <input id="year" placeholder="2024 (optional)">
+        </div>
+      </div>
+
+      <!-- ⭐ NEW: Google Drive Link Input -->
+      <label for="drive">Google Drive Link</label>
+      <input id="drive" type="text" placeholder="Paste Google Drive file link (required)">
+
+      <!-- ⭐ PDF is optional now (since storage is not used) -->
+      <label for="file">PDF File (Optional if using Drive link)</label>
+      <input id="file" type="file" accept="application/pdf">
+
+      <div style="margin-top:12px; display:flex; gap:8px;">
+        <button id="uploadBtn" type="button">Upload eBook</button>
+        <button id="cancelBtn" type="button" style="background:#ef4444;">Cancel</button>
+      </div>
+
+    </form>
+
+    <div id="status" style="margin-top:12px;color:#374151"></div>
+  </main>
+
+  <script type="module" src="../js/admin-upload.js"></script>
+</body>
+</html>
