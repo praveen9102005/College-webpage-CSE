@@ -1,39 +1,233 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <title>Student</title>
-  <link rel="stylesheet" href="auth.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Student Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/student.css">
+
+<!-- 🌙 AUTO SYSTEM DARK MODE -->
+<script>
+(function () {
+  const media = window.matchMedia("(prefers-color-scheme: dark)");
+  document.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.toggle("dark", media.matches);
+  });
+  media.addEventListener("change", e => {
+    document.body.classList.toggle("dark", e.matches);
+  });
+})();
+</script>
 </head>
+
 <body>
 
-<div class="auth-box">
-  <h1>👨‍🎓 Student Dashboard</h1>
-  <button onclick="logout()">Logout</button>
+<!-- EMAIL VERIFICATION NOTICE -->
+<div id="verifyBox">
+  <h3>Email Verification Required</h3>
+  <p>Please verify your email to access the dashboard.</p>
+  <button id="resendBtn" class="btn">Resend Verification Email</button>
+  <p class="small">Check spam folder if not received.</p>
 </div>
 
+<div class="wrap">
+
+<header class="site">
+  <div class="brand">
+    <div>
+      <h1>Student Dashboard</h1>
+    </div>
+  </div>
+
+  <div class="profile">
+    <div class="profile-info">
+      <div id="displayNameTop">Student</div>
+      <div id="displayRegYear" class="small">Reg: — • Year: —</div>
+    </div>
+    <div class="avatar">
+      <img src="/Images/user.png" alt="profile">
+    </div>
+    <button id="editBtn" class="btn ghost">Edit</button>
+    <button id="logoutBtn" class="btn ghost">Logout</button>
+  </div>
+</header>
+
+<main>
+
+<section class="panel">
+  <h2>Attendance</h2>
+  <div class="attendance-grid">
+    <div class="att-card"><h3>Overall</h3><p>92%</p></div>
+    <div class="att-card"><h3>Last 30 Days</h3><p>95%</p></div>
+    <div class="att-card"><h3>Missed</h3><p>3</p></div>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>Internal Marks</h2>
+  <table>
+    <thead>
+      <tr><th>Subject</th><th>Test 1</th><th>Test 2</th><th>Avg</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Maths</td><td>18</td><td>17</td><td>17.5</td></tr>
+      <tr><td>Physics</td><td>16</td><td>18</td><td>17</td></tr>
+      <tr><td>DS</td><td>19</td><td>18</td><td>18.5</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="panel">
+  <a class="ebook" href="ebooks.html"><h2>📘 eBooks</h2></a>
+</section>
+
+<section class="panel">
+  <h2>Syllabus</h2>
+  <details><summary>Maths</summary><div class="body">Calculus, Algebra</div></details>
+  <details><summary>Physics</summary><div class="body">Mechanics, Optics</div></details>
+</section>
+
+</main>
+
+<aside>
+<section class="panel">
+  <h2>Conference Alerts</h2>
+  <div class="event"><span>AI Workshop</span><span class="when">20 Dec</span></div>
+  <div class="event"><span>Paper Submission</span><span class="when">10 Jan</span></div>
+</section>
+</aside>
+
+<footer>© 2025 Student Dashboard</footer>
+</div>
+
+<!-- EDIT PROFILE MODAL -->
+<div id="modalBackdrop" class="modal-backdrop">
+<div class="modal">
+
+<h3>Edit Profile</h3>
+
+<div class="field">
+  <label>Email</label>
+  <input id="inputEmail" readonly>
+  <small id="emailStatus" class="small"></small>
+</div>
+
+<div class="field"><label>Name</label><input id="inputName"></div>
+<div class="field"><label>Register No</label><input id="inputReg"></div>
+
+<div class="field">
+  <label>Year</label>
+  <select id="inputYear">
+    <option value="">Select</option>
+    <option>1st Year</option>
+    <option>2nd Year</option>
+    <option>3rd Year</option>
+    <option>4th Year</option>
+  </select>
+</div>
+
+<div class="field"><label>Phone</label><input id="inputPhone"></div>
+<div class="field"><label>Address</label><textarea id="inputAddress"></textarea></div>
+
+<div style="text-align:right">
+  <button id="cancelBtn" class="btn ghost">Cancel</button>
+  <button id="saveBtn" class="btn">Save</button>
+</div>
+
+</div>
+</div>
+
+<!-- FIREBASE -->
 <script type="module">
-import { getAuth, onAuthStateChanged, signOut } from
-"https://www.gstatic.com/firebasejs/10.3.0/firebase-auth.js";
-import { getFirestore, doc, getDoc } from
-"https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut, sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore.js";
 
-const auth = getAuth();
-const db = getFirestore();
+const firebaseConfig = {
+  apiKey: "AIzaSyBk2hRR4QzGjrXPkge_hPVEZ1Tv6jQR58A",
+  authDomain: "college-webpage-eab22.firebaseapp.com",
+  projectId: "college-webpage-eab22"
+};
 
-onAuthStateChanged(auth, async (user) => {
-  if (!user) location = "auth.html";
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const modal = document.getElementById("modalBackdrop");
+const verifyBox = document.getElementById("verifyBox");
+const resendBtn = document.getElementById("resendBtn");
+
+const inputEmail = document.getElementById("inputEmail");
+const emailStatus = document.getElementById("emailStatus");
+const inputName = document.getElementById("inputName");
+const inputReg = document.getElementById("inputReg");
+const inputYear = document.getElementById("inputYear");
+const inputPhone = document.getElementById("inputPhone");
+const inputAddress = document.getElementById("inputAddress");
+
+const displayNameTop = document.getElementById("displayNameTop");
+const displayRegYear = document.getElementById("displayRegYear");
+
+let firstTime = false;
+
+onAuthStateChanged(auth, async user => {
+  if (!user) return location.href = "auth.html";
+
+  inputEmail.value = user.email;
+  emailStatus.textContent = user.emailVerified ? "Verified ✅" : "Not Verified ❌";
+
+  if (!user.emailVerified) {
+    document.querySelector(".wrap").style.display = "none";
+    verifyBox.style.display = "block";
+    resendBtn.onclick = () => sendEmailVerification(user);
+    return;
+  }
 
   const snap = await getDoc(doc(db, "users", user.uid));
-  if (!snap.exists() || snap.data().role !== "student") {
-    await signOut(auth);
-    location = "auth.html";
+  if (!snap.exists()) {
+    firstTime = true;
+    modal.style.display = "grid";
+    return;
   }
+
+  const p = snap.data();
+  inputName.value = p.name;
+  inputReg.value = p.reg;
+  inputYear.value = p.year;
+  inputPhone.value = p.phone;
+  inputAddress.value = p.address;
+
+  displayNameTop.textContent = p.name;
+  displayRegYear.textContent = `Reg: ${p.reg} • Year: ${p.year}`;
 });
 
-window.logout = async () => {
+document.getElementById("editBtn").onclick = () => modal.style.display = "grid";
+document.getElementById("cancelBtn").onclick = () => firstTime ? alert("Complete profile") : modal.style.display = "none";
+
+document.getElementById("saveBtn").onclick = async () => {
+  const user = auth.currentUser;
+  if (!inputName.value || !inputReg.value || !inputYear.value || !inputPhone.value || !inputAddress.value)
+    return alert("All fields required");
+
+  await setDoc(doc(db, "users", user.uid), {
+    name: inputName.value,
+    reg: inputReg.value,
+    year: inputYear.value,
+    phone: inputPhone.value,
+    address: inputAddress.value,
+    profileCompleted: true
+  }, { merge: true });
+
+  modal.style.display = "none";
+};
+
+document.getElementById("logoutBtn").onclick = async () => {
   await signOut(auth);
-  location = "auth.html";
+  location.href = "login.html";
 };
 </script>
+
 </body>
 </html>
