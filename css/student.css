@@ -1,49 +1,68 @@
-/* =====================================================
-   RESET & VARIABLES
-===================================================== */
+/* =========================================================
+   MODERN STUDENT DASHBOARD UI (SYSTEM LIGHT / DARK)
+========================================================= */
+
+/* ------------------ RESET ------------------ */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* ------------------ COLOR TOKENS ------------------ */
+/* 🌞 LIGHT MODE (DEFAULT) */
 :root {
-  --bg: #f4f8ff;
-  --card: #ffffff;
+  --bg: #f5f7fb;
+  --surface: #ffffff;
+  --surface-2: #f1f5f9;
   --text: #0f172a;
   --muted: #64748b;
-  --accent: #3b82f6;
-  --accent-soft: #e0edff;
   --border: #e5e7eb;
+
+  --primary: #2563eb;
+  --primary-soft: #e0ecff;
+
+  --success: #16a34a;
+  --danger: #dc2626;
+
   --radius: 14px;
-  --shadow: 0 10px 25px rgba(0,0,0,0.06);
+  --radius-sm: 10px;
+
+  --shadow-sm: 0 4px 12px rgba(0,0,0,0.05);
+  --shadow-md: 0 14px 35px rgba(0,0,0,0.08);
+
+  --transition: 0.25s ease;
 }
 
-/* 🌙 AUTO DARK MODE (enabled via body.dark) */
-body.dark {
-  --bg: #0b1220;
-  --card: #0f172a;
-  --text: #e5e7eb;
-  --muted: #9ca3af;
-  --accent: #60a5fa;
-  --accent-soft: #1e293b;
-  --border: #1f2937;
-  --shadow: 0 16px 40px rgba(0,0,0,0.45);
+/* 🌙 DARK MODE – AUTO FROM SYSTEM */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b1220;
+    --surface: #0f172a;
+    --surface-2: #111827;
+    --text: #e5e7eb;
+    --muted: #9ca3af;
+    --border: #1f2937;
+
+    --primary: #60a5fa;
+    --primary-soft: #1e293b;
+
+    --shadow-sm: 0 6px 20px rgba(0,0,0,0.45);
+    --shadow-md: 0 20px 50px rgba(0,0,0,0.6);
+  }
 }
 
-/* =====================================================
-   BASE
-===================================================== */
+/* ------------------ BASE ------------------ */
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--bg);
   color: var(--text);
-  transition: background 0.3s ease, color 0.3s ease;
+  line-height: 1.5;
 }
 
 a {
-  color: inherit;
   text-decoration: none;
+  color: inherit;
 }
 
 .small {
@@ -51,70 +70,65 @@ a {
   color: var(--muted);
 }
 
-/* =====================================================
-   LAYOUT
-===================================================== */
+/* ------------------ LAYOUT ------------------ */
 .wrap {
+  max-width: 1440px;
+  margin: auto;
+  padding: 20px;
   display: grid;
   grid-template-columns: 1fr 320px;
-  gap: 18px;
-  padding: 18px;
-  max-width: 1400px;
-  margin: auto;
+  gap: 20px;
 }
 
 main {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
 }
 
 aside {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
 }
 
-/* =====================================================
-   HEADER
-===================================================== */
+/* ------------------ HEADER ------------------ */
 header.site {
   grid-column: 1 / -1;
-  background: var(--card);
+  background: var(--surface);
   border-radius: var(--radius);
-  padding: 16px 18px;
-  border: 1px solid var(--border);
+  padding: 18px 22px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
 }
 
 .brand {
   display: flex;
-  gap: 14px;
   align-items: center;
+  gap: 14px;
 }
 
 .logo {
-  background: linear-gradient(135deg, var(--accent), #7dd3fc);
+  background: linear-gradient(135deg, var(--primary), #3b82f6);
   color: #fff;
   font-weight: 700;
   font-size: 18px;
-  padding: 12px;
-  border-radius: 12px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
 }
 
 .brand h1 {
   font-size: 20px;
 }
 
-/* =====================================================
-   PROFILE (TOP RIGHT)
-===================================================== */
+/* ------------------ PROFILE ------------------ */
 .profile {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .profile-info {
@@ -125,112 +139,135 @@ header.site {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border: 2px solid var(--accent);
+  border: 2px solid var(--primary);
 }
 
-/* =====================================================
-   BUTTONS
-===================================================== */
+/* ------------------ BUTTONS ------------------ */
 .btn {
-  padding: 8px 14px;
-  border-radius: 10px;
+  padding: 8px 16px;
+  border-radius: 999px;
   border: none;
   cursor: pointer;
   font-weight: 600;
-  background: var(--accent-soft);
-  color: var(--accent);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: var(--primary-soft);
+  color: var(--primary);
+  transition: transform var(--transition), box-shadow var(--transition);
 }
 
 .btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  box-shadow: var(--shadow-sm);
 }
 
-.btn.ghost {
-  background: var(--accent-soft);
+.btn:active {
+  transform: scale(0.97);
 }
 
-/* =====================================================
-   PANELS
-===================================================== */
+/* ------------------ PANELS ------------------ */
 .panel {
-  background: var(--card);
+  background: var(--surface);
   border-radius: var(--radius);
-  padding: 16px;
+  padding: 18px;
+  box-shadow: var(--shadow-sm);
   border: 1px solid var(--border);
-  box-shadow: var(--shadow);
 }
 
 .panel h2 {
   font-size: 18px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
-/* =====================================================
-   ATTENDANCE
-===================================================== */
+/* ------------------ ATTENDANCE ------------------ */
 .attendance-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  gap: 14px;
 }
 
 .att-card {
-  background: var(--accent-soft);
-  padding: 14px;
-  border-radius: 12px;
+  background: var(--primary-soft);
+  border-radius: var(--radius);
+  padding: 16px;
   text-align: center;
-  transition: transform 0.25s ease;
+  transition: transform var(--transition);
 }
 
 .att-card:hover {
-  transform: scale(1.05);
+  transform: translateY(-4px);
 }
 
 .att-card h3 {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--muted);
 }
 
 .att-card p {
   font-size: 26px;
   font-weight: 700;
-  color: var(--accent);
+  color: var(--primary);
 }
 
-/* =====================================================
-   INTERNAL MARKS TABLE
-===================================================== */
+/* ------------------ TABLE ------------------ */
 table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 10px;
 }
 
 th, td {
-  padding: 10px;
-  border-bottom: 1px solid var(--border);
+  padding: 12px;
   text-align: left;
+  border-bottom: 1px solid var(--border);
 }
 
 th {
-  background: var(--accent-soft);
   font-size: 13px;
+  background: var(--surface-2);
 }
 
 td {
   font-size: 14px;
 }
 
+/* ------------------ 📘 EBOOKS ------------------ */
+.ebooks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
-/* =====================================================
-   SYLLABUS
-===================================================== */
+.ebook {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.ebook:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.ebook-title {
+  font-weight: 600;
+}
+
+.open-label {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* ------------------ SYLLABUS ------------------ */
 details {
   border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 10px;
-  margin-top: 8px;
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  margin-top: 10px;
+  background: var(--surface);
 }
 
 summary {
@@ -238,18 +275,11 @@ summary {
   font-weight: 600;
 }
 
-details .body {
-  margin-top: 6px;
-  font-size: 14px;
-}
-
-/* =====================================================
-   EVENTS
-===================================================== */
+/* ------------------ EVENTS ------------------ */
 .event {
   display: flex;
   justify-content: space-between;
-  padding: 10px 0;
+  padding: 12px 0;
   border-bottom: 1px solid var(--border);
 }
 
@@ -260,86 +290,45 @@ details .body {
 .when {
   font-size: 12px;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--primary);
 }
 
-/* =====================================================
-   EMAIL VERIFICATION BOX
-===================================================== */
-#verifyBox {
-  display: none;
-  max-width: 520px;
-  margin: 80px auto;
-  padding: 24px;
-  background: #fff3cd;
-  border: 1px solid #ffe69c;
-  border-radius: 14px;
-  text-align: center;
-  box-shadow: var(--shadow);
-}
-
-body.dark #verifyBox {
-  background: #1e293b;
-  border-color: #334155;
-}
-
-/* =====================================================
-   EDIT PROFILE MODAL
-===================================================== */
+/* ------------------ MODAL ------------------ */
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0,0,0,0.55);
   display: none;
   place-items: center;
   z-index: 1000;
 }
 
 .modal {
-  background: var(--card);
-  padding: 20px;
+  background: var(--surface);
   border-radius: var(--radius);
+  padding: 22px;
   width: 420px;
-  max-width: 95%;
-  box-shadow: var(--shadow);
+  max-width: 92%;
+  box-shadow: var(--shadow-md);
 }
 
 .field {
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
-}
-
-.field label {
-  font-size: 13px;
-  margin-bottom: 4px;
+  gap: 4px;
+  margin-bottom: 12px;
 }
 
 .field input,
-.field select,
-.field textarea {
-  padding: 8px;
-  border-radius: 8px;
+.field select {
+  padding: 10px;
+  border-radius: var(--radius-sm);
   border: 1px solid var(--border);
-  font-family: inherit;
-  font-size: 14px;
   background: transparent;
   color: var(--text);
 }
 
-.field textarea {
-  resize: vertical;
-}
-
-/* Read-only email field */
-.field input[readonly] {
-  background: var(--accent-soft);
-  cursor: not-allowed;
-}
-
-/* =====================================================
-   FOOTER
-===================================================== */
+/* ------------------ FOOTER ------------------ */
 footer {
   grid-column: 1 / -1;
   text-align: center;
@@ -348,10 +337,8 @@ footer {
   padding: 14px;
 }
 
-/* =====================================================
-   📱 RESPONSIVE (MOBILE)
-===================================================== */
-@media (max-width: 1000px) {
+/* ------------------ 📱 MOBILE ------------------ */
+@media (max-width: 900px) {
   .wrap {
     grid-template-columns: 1fr;
   }

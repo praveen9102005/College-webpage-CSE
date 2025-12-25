@@ -1,43 +1,25 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Student Dashboard</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/student.css">
-
-<!-- 🌙 AUTO SYSTEM DARK MODE -->
-<script>
-(function () {
-  const media = window.matchMedia("(prefers-color-scheme: dark)");
-  document.addEventListener("DOMContentLoaded", () => {
-    document.body.classList.toggle("dark", media.matches);
-  });
-  media.addEventListener("change", e => {
-    document.body.classList.toggle("dark", e.matches);
-  });
-})();
-</script>
 </head>
 
 <body>
 
-<!-- EMAIL VERIFICATION NOTICE -->
-<div id="verifyBox">
-  <h3>Email Verification Required</h3>
-  <p>Please verify your email to access the dashboard.</p>
-  <button id="resendBtn" class="btn">Resend Verification Email</button>
-  <p class="small">Check spam folder if not received.</p>
-</div>
-
 <div class="wrap">
 
+<!-- ================= HEADER ================= -->
 <header class="site">
   <div class="brand">
+    <div class="logo">SN</div>
     <div>
       <h1>Student Dashboard</h1>
+      <p class="small">Attendance · Internal Marks · eBooks · Syllabus</p>
     </div>
   </div>
 
@@ -46,14 +28,17 @@
       <div id="displayNameTop">Student</div>
       <div id="displayRegYear" class="small">Reg: — • Year: —</div>
     </div>
+
     <div class="avatar">
       <img src="/Images/user.png" alt="profile">
     </div>
+
     <button id="editBtn" class="btn ghost">Edit</button>
     <button id="logoutBtn" class="btn ghost">Logout</button>
   </div>
 </header>
 
+<!-- ================= MAIN ================= -->
 <main>
 
 <section class="panel">
@@ -68,25 +53,22 @@
 <section class="panel">
   <h2>Internal Marks</h2>
   <table>
-    <thead>
-      <tr><th>Subject</th><th>Test 1</th><th>Test 2</th><th>Avg</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>Maths</td><td>18</td><td>17</td><td>17.5</td></tr>
-      <tr><td>Physics</td><td>16</td><td>18</td><td>17</td></tr>
-      <tr><td>DS</td><td>19</td><td>18</td><td>18.5</td></tr>
-    </tbody>
+    <tr><th>Subject</th><th>Test 1</th><th>Test 2</th></tr>
+    <tr><td>Maths</td><td>18</td><td>17</td></tr>
+    <tr><td>Physics</td><td>16</td><td>18</td></tr>
+    <tr><td>DS</td><td>19</td><td>18</td></tr>
   </table>
 </section>
 
 <section class="panel">
-  <a class="ebook" href="ebooks.html"><h2>📘 eBooks</h2></a>
+  <a href="ebooks.html"><h2>📘 eBooks</h2></a>
 </section>
 
 <section class="panel">
   <h2>Syllabus</h2>
-  <details><summary>Maths</summary><div class="body">Calculus, Algebra</div></details>
-  <details><summary>Physics</summary><div class="body">Mechanics, Optics</div></details>
+  <details><summary>Maths</summary><p>Calculus, Algebra</p></details>
+  <details><summary>Physics</summary><p>Mechanics, Optics</p></details>
+  <details><summary>DS</summary><p>Arrays, Trees, Graphs</p></details>
 </section>
 
 </main>
@@ -94,31 +76,32 @@
 <aside>
 <section class="panel">
   <h2>Conference Alerts</h2>
-  <div class="event"><span>AI Workshop</span><span class="when">20 Dec</span></div>
-  <div class="event"><span>Paper Submission</span><span class="when">10 Jan</span></div>
+  <p>AI & ML Workshop – 20 Dec 2025</p>
+  <p>Paper Submission – 10 Jan 2026</p>
 </section>
 </aside>
 
 <footer>© 2025 Student Dashboard</footer>
 </div>
 
-<!-- EDIT PROFILE MODAL -->
+<!-- ================= EDIT PROFILE MODAL ================= -->
 <div id="modalBackdrop" class="modal-backdrop">
 <div class="modal">
 
-<h3>Edit Profile</h3>
+<h3>Complete Your Profile</h3>
 
 <div class="field">
-  <label>Email</label>
-  <input id="inputEmail" readonly>
-  <small id="emailStatus" class="small"></small>
+  <label>Name *</label>
+  <input id="inputName">
 </div>
 
-<div class="field"><label>Name</label><input id="inputName"></div>
-<div class="field"><label>Register No</label><input id="inputReg"></div>
+<div class="field">
+  <label>Register No *</label>
+  <input id="inputReg">
+</div>
 
 <div class="field">
-  <label>Year</label>
+  <label>Year *</label>
   <select id="inputYear">
     <option value="">Select</option>
     <option>1st Year</option>
@@ -128,10 +111,32 @@
   </select>
 </div>
 
-<div class="field"><label>Phone</label><input id="inputPhone"></div>
-<div class="field"><label>Address</label><textarea id="inputAddress"></textarea></div>
+<div class="field">
+  <label>Phone Number *</label>
+  <input id="inputPhone" type="tel" maxlength="10">
+</div>
 
-<div style="text-align:right">
+<div class="field">
+  <label>Date of Birth</label>
+  <input id="inputDob" type="date">
+</div>
+
+<div class="field">
+  <label>Age</label>
+  <input id="inputAge" readonly>
+</div>
+
+<div class="field">
+  <label>Gender</label>
+  <select id="inputGender">
+    <option value="">Select</option>
+    <option>Male</option>
+    <option>Female</option>
+    <option>Other</option>
+  </select>
+</div>
+
+<div class="actions">
   <button id="cancelBtn" class="btn ghost">Cancel</button>
   <button id="saveBtn" class="btn">Save</button>
 </div>
@@ -139,93 +144,112 @@
 </div>
 </div>
 
-<!-- FIREBASE -->
+<!-- ================= FIREBASE ================= -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut, sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-auth.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-auth.js";
 import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBk2hRR4QzGjrXPkge_hPVEZ1Tv6jQR58A",
   authDomain: "college-webpage-eab22.firebaseapp.com",
-  projectId: "college-webpage-eab22"
+  projectId: "college-webpage-eab22",
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+/* UI */
 const modal = document.getElementById("modalBackdrop");
-const verifyBox = document.getElementById("verifyBox");
-const resendBtn = document.getElementById("resendBtn");
+const editBtn = document.getElementById("editBtn");
+const cancelBtn = document.getElementById("cancelBtn");
+const saveBtn = document.getElementById("saveBtn");
+const logoutBtn = document.getElementById("logoutBtn");
 
-const inputEmail = document.getElementById("inputEmail");
-const emailStatus = document.getElementById("emailStatus");
 const inputName = document.getElementById("inputName");
 const inputReg = document.getElementById("inputReg");
 const inputYear = document.getElementById("inputYear");
 const inputPhone = document.getElementById("inputPhone");
-const inputAddress = document.getElementById("inputAddress");
+const inputDob = document.getElementById("inputDob");
+const inputAge = document.getElementById("inputAge");
+const inputGender = document.getElementById("inputGender");
 
 const displayNameTop = document.getElementById("displayNameTop");
 const displayRegYear = document.getElementById("displayRegYear");
 
-let firstTime = false;
+let isFirstTime = false;
 
-onAuthStateChanged(auth, async user => {
-  if (!user) return location.href = "auth.html";
+/* AGE */
+inputDob.onchange = () => {
+  if (!inputDob.value) return;
+  const d = new Date(inputDob.value);
+  inputAge.value = new Date().getFullYear() - d.getFullYear();
+};
 
-  inputEmail.value = user.email;
-  emailStatus.textContent = user.emailVerified ? "Verified ✅" : "Not Verified ❌";
-
-  if (!user.emailVerified) {
-    document.querySelector(".wrap").style.display = "none";
-    verifyBox.style.display = "block";
-    resendBtn.onclick = () => sendEmailVerification(user);
+/* AUTH */
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    window.location.href = "auth.html";
     return;
   }
 
-  const snap = await getDoc(doc(db, "users", user.uid));
-  if (!snap.exists()) {
-    firstTime = true;
+  const ref = doc(db, "users", user.uid);
+  const snap = await getDoc(ref);
+
+  if (!snap.exists() || !snap.data().profileCompleted) {
+    isFirstTime = true;
     modal.style.display = "grid";
+    cancelBtn.style.display = "none";
     return;
   }
 
   const p = snap.data();
-  inputName.value = p.name;
-  inputReg.value = p.reg;
-  inputYear.value = p.year;
-  inputPhone.value = p.phone;
-  inputAddress.value = p.address;
-
   displayNameTop.textContent = p.name;
   displayRegYear.textContent = `Reg: ${p.reg} • Year: ${p.year}`;
 });
 
-document.getElementById("editBtn").onclick = () => modal.style.display = "grid";
-document.getElementById("cancelBtn").onclick = () => firstTime ? alert("Complete profile") : modal.style.display = "none";
+/* SAVE */
+saveBtn.onclick = async () => {
+  const phone = inputPhone.value.trim();
 
-document.getElementById("saveBtn").onclick = async () => {
-  const user = auth.currentUser;
-  if (!inputName.value || !inputReg.value || !inputYear.value || !inputPhone.value || !inputAddress.value)
-    return alert("All fields required");
+  if (!inputName.value || !inputReg.value || !inputYear.value || !phone) {
+    alert("Fill all required fields");
+    return;
+  }
 
-  await setDoc(doc(db, "users", user.uid), {
+  if (!/^[6-9]\d{9}$/.test(phone)) {
+    alert("Enter valid 10-digit phone number");
+    return;
+  }
+
+  await setDoc(doc(db, "users", auth.currentUser.uid), {
     name: inputName.value,
     reg: inputReg.value,
     year: inputYear.value,
-    phone: inputPhone.value,
-    address: inputAddress.value,
+    phone,
+    dob: inputDob.value,
+    age: inputAge.value,
+    gender: inputGender.value,
+    role: "student",
     profileCompleted: true
   }, { merge: true });
 
+  displayNameTop.textContent = inputName.value;
+  displayRegYear.textContent = `Reg: ${inputReg.value} • Year: ${inputYear.value}`;
   modal.style.display = "none";
 };
 
-document.getElementById("logoutBtn").onclick = async () => {
+/* BUTTONS */
+editBtn.onclick = () => modal.style.display = "grid";
+cancelBtn.onclick = () => {
+  if (isFirstTime) return alert("Complete profile first");
+  modal.style.display = "none";
+};
+
+logoutBtn.onclick = async () => {
   await signOut(auth);
-  location.href = "login.html";
+  window.location.href = "login.html";
 };
 </script>
 
