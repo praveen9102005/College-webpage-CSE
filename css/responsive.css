@@ -146,3 +146,11 @@
         gap: 10px;
     }
 }
+/* Responsive */
+@media(max-width:768px){
+    .dept-achievement-card {
+        min-height: auto;
+    }
+}
+
+

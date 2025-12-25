@@ -473,13 +473,13 @@ footer {
     color: #666;
 }
 
-.staff-grid, .lab-grid, .achievement-grid {
+.staff-grid{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
 }
 
-.staff-card, .lab-card, .achievement-card {
+.staff-card {
     background-color: white;
     border-radius: 8px;
     overflow: hidden;
@@ -487,11 +487,11 @@ footer {
     transition: transform 0.3s ease;
 }
 
-.staff-card:hover, .achievement-card:hover {
+.staff-card:hover{
     transform: translateY(-5px);
 }
 
-.staff-img, .lab-img, .achievement-img {
+.staff-img {
     height: 200px;
     background-color: #f0f0f0;
     display: flex;
@@ -501,16 +501,16 @@ footer {
     font-size: 4rem;
 }
 
-.staff-info, .lab-info, .achievement-info {
+.staff-info {
     padding: 1.5rem;
 }
 
-.staff-info h3, .lab-info h3, .achievement-info h3 {
+.staff-info h3{
     color: var(--primary);
     margin-bottom: 1rem;
 }
 
-.staff-info p, .lab-info p, .achievement-info p {
+.staff-info p {
     color: #666;
     margin-bottom: 1rem;
 }
@@ -1038,3 +1038,256 @@ footer {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.25);
 }
+
+
+
+
+/*labs.html css*/
+
+/* ===== LAB SHOWCASE ===== */
+
+.labs-showcase {
+  padding: 90px 10%;
+  background-image: url('/Images/labsoft.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    backdrop-filter: brightness(100%);
+
+  color: #fff;
+}
+
+.labs-heading {
+  text-align: center;
+  font-size: 42px;
+  margin-bottom: 70px;
+  letter-spacing: 1px;
+  color: rgb(0, 0, 0);
+  
+}
+
+/* ===== LAB ROW ===== */
+.lab-row {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  margin-bottom: 40px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(179, 171, 171, 0.05);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.45);
+  transition: transform 0.4s ease;
+}
+
+.lab-row:hover {
+  transform: translateX(10px);
+}
+
+/* ===== LEFT PANEL ===== */
+.lab-title {
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.lab-title span {
+  font-size: 13px;
+  letter-spacing: 2px;
+  opacity: 0.8;
+  margin-bottom: 10px;
+}
+
+.lab-title h3 {
+  font-size: 24px;
+  line-height: 1.3;
+}
+
+/* ===== RIGHT PANEL ===== */
+.lab-content {
+  padding: 40px;
+}
+
+.lab-content p {
+  font-size: 15px;
+  opacity: 0.9;
+  margin-bottom: 15px;
+}
+
+.lab-content ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 18px;
+}
+
+.lab-content ul li {
+  margin-bottom: 8px;
+  padding-left: 18px;
+  position: relative;
+}
+
+.lab-content ul li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+}
+
+/* ===== META ===== */
+.lab-meta {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  background: rgba(255,255,255,0.15);
+}
+
+/* ===== COLOR THEMES ===== */
+.lab-blue .lab-title { background: linear-gradient(135deg, #b6edfc, #5694df); }
+.lab-purple .lab-title { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+.lab-red .lab-title { background: linear-gradient(135deg, #ff4b2b, #ff416c); }
+.lab-green .lab-title { background: linear-gradient(135deg, #11998e, #38ef7d); }
+.lab-orange .lab-title { background: linear-gradient(135deg, #f7971e, #ffd200); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .lab-row {
+    grid-template-columns: 1fr;
+  }
+
+  .lab-title {
+    text-align: center;
+  }
+}
+
+/* ================================
+   PREMIUM ACHIEVEMENTS SECTION
+   ================================ */
+
+.dept-achievements {
+    padding: 100px 0;
+  background:
+    radial-gradient(at 30% 20%, rgba(99,102,241,0.55), transparent 55%),
+    radial-gradient(at 80% 30%, rgba(6,182,212,0.5), transparent 50%),
+    radial-gradient(at 50% 75%, rgba(168,85,247,0.45), transparent 60%),
+    linear-gradient(145deg, #f8fafc, #eef2ff);
+    background:
+    radial-gradient(circle at 20% 30%, rgba(139,92,246,0.45), transparent 55%),
+    radial-gradient(circle at 80% 25%, rgba(6,182,212,0.4), transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(99,102,241,0.35), transparent 60%),
+    linear-gradient(135deg, #f1f5f9, #e0e7ff);
+
+
+    font-family: 'Poppins', sans-serif;
+}
+
+.dept-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+.dept-title {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.dept-title h2 {
+    font-size: 2.7rem;
+    background: linear-gradient(90deg, #4f46e5, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.dept-title p {
+    max-width: 650px;
+    margin: 16px auto;
+    color: #475569;
+}
+
+.dept-achievement-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(440px, 2fr));
+    gap: 56px;
+}
+
+.dept-achievement-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    padding: 64px;
+    min-height: 340px;
+    backdrop-filter: blur(14px);
+    box-shadow: 0 30px 70px rgba(0,0,0,0.18);
+    transition: 0.5s ease;
+}
+
+.dept-achievement-card:hover {
+    transform: translateY(-16px) scale(1.02);
+}
+
+/* Background Image */
+.dept-achievement-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.dept-achievement-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(0) brightness(0.55);
+    transform: scale(1.2);
+    transition: 0.5s ease;
+}
+
+.dept-achievement-card:hover img {
+    transform: scale(1.3);
+}
+
+/* Overlay */
+.dept-achievement-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+  
+    z-index: 1;
+}
+
+/* Content */
+.dept-achievement-icon,
+.dept-achievement-content {
+    position: relative;
+    z-index: 2;
+}
+
+.dept-achievement-icon {
+    font-size: 1.8rem;
+    color: #38bdf8;
+    margin-bottom: 18px;
+}
+
+.dept-achievement-content h3 {
+    color: #fff;
+    font-size: 2.4rem;
+    margin-bottom: 10px;
+}
+
+.dept-achievement-content p {
+    color: #e5e7eb;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.dept-achievement-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin: 18px 0 10px;
+    color: #c7d2fe;
+}
+
+.dept-achievement-team {
+    font-size: 0.9rem;
+    color: #f1f5f9;
+}
+
+
