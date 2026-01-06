@@ -1,39 +1,307 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <title>Faculty</title>
-  <link rel="stylesheet" href="auth.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teacher Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/faculty.css">
 </head>
+
 <body>
 
-<div class="auth-box">
-  <h1>👨‍🏫 Faculty Dashboard</h1>
-  <button onclick="logout()">Logout</button>
+<div class="wrap">
+
+<!-- ================= HEADER ================= -->
+<header class="site">
+  <div class="brand">
+    <div>
+      <h1>Teacher Dashboard</h1>
+    </div>
+  </div>
+
+  <div class="profile">
+    <div class="profile-info">
+      <div id="teacherName">Teacher</div>
+      <div class="small" id="teacherDept">Department</div>
+    </div>
+
+    <div class="avatar">
+      <img id="teacherPhoto" src="/Images/user.png">
+    </div>
+
+    <button id="editProfileBtn" class="btn ghost">Edit Profile</button>
+    <button id="logoutBtn" class="btn ghost">Logout</button>
+  </div>
+</header>
+
+<!-- ================= MAIN ================= -->
+<main>
+
+<!-- SUBJECTS -->
+<section class="panel">
+  <h2>Subjects Handling</h2>
+  <ul class="list">
+    <li>Data Structures</li>
+    <li>Operating Systems</li>
+    <li>Database Management Systems</li>
+  </ul>
+</section>
+
+<!-- STUDENTS -->
+<section class="panel">
+  <h2>Students</h2>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Register No</th>
+      <th>Year</th>
+    </tr>
+    <tr>
+      <td>Arun</td>
+      <td>21CS101</td>
+      <td>3rd Year</td>
+    </tr>
+    <tr>
+      <td>Priya</td>
+      <td>21CS112</td>
+      <td>3rd Year</td>
+    </tr>
+  </table>
+</section>
+
+<!-- TIMETABLE -->
+<section class="panel">
+  <h2>Timetable</h2>
+
+  <table id="timetableTable">
+    <tr>
+      <th>Day</th>
+      <th>Period</th>
+      <th>Subject</th>
+    </tr>
+  </table>
+
+  <div class="field-row">
+    <select id="day">
+      <option value="">Day</option>
+      <option>Monday</option>
+      <option>Tuesday</option>
+      <option>Wednesday</option>
+      <option>Thursday</option>
+      <option>Friday</option>
+    </select>
+
+    <input id="period" placeholder="Period (eg: 1st)">
+    <input id="subject" placeholder="Subject">
+
+    <button id="addTT" class="btn">Add</button>
+  </div>
+</section>
+
+</main>
+
+<footer>© 2025 Teacher Dashboard</footer>
 </div>
 
+<!-- ================= PROFILE MODAL ================= -->
+<div id="profileModal" class="modal-backdrop">
+  <div class="modal">
+
+    <h2>Faculty Profile</h2>
+
+    <div class="photo-section">
+      <label class="upload-btn">
+        <input type="file" id="photoInput" accept="image/*" hidden>
+      </label>
+    </div>
+
+    <div class="grid">
+      <div class="field">
+        <label>Name *</label>
+        <input id="name">
+      </div>
+
+      <div class="field">
+        <label>Department *</label>
+        <select id="department">
+          <option value="">Select</option>
+          <option>CSE</option>
+          <option>ECE</option>
+          <option>EEE</option>
+          <option>IT</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Email</label>
+        <input id="email" readonly>
+      </div>
+
+      <div class="field">
+        <label>Phone *</label>
+        <input id="phone" maxlength="10">
+      </div>
+
+      <div class="field">
+        <label>Designation *</label>
+        <input id="designation">
+      </div>
+
+      <div class="field">
+        <label>Qualification *</label>
+        <input id="qualification">
+      </div>
+
+      <div class="field full">
+        <label>Experience *</label>
+        <input id="experience">
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button id="saveProfileBtn" class="btn primary">Save</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ================= FIREBASE ================= -->
 <script type="module">
-import { getAuth, onAuthStateChanged, signOut } from
-"https://www.gstatic.com/firebasejs/10.3.0/firebase-auth.js";
-import { getFirestore, doc, getDoc } from
-"https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc, collection, query, orderBy, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-firestore.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-storage.js";
 
-const auth = getAuth();
-const db = getFirestore();
+const firebaseConfig = {
+  apiKey: "AIzaSyBk2hRR4QzGjrXPkge_hPVEZ1Tv6jQR58A",
+  authDomain: "college-webpage-eab22.firebaseapp.com",
+  projectId: "college-webpage-eab22",
+  storageBucket: "college-webpage-eab22.firebasestorage.app"
+};
 
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
+
+/* UI */
+const modal = document.getElementById("profileModal");
+const editProfileBtn = document.getElementById("editProfileBtn");
+const saveProfileBtn = document.getElementById("saveProfileBtn");
+const logoutBtn = document.getElementById("logoutBtn");
+
+const teacherName = document.getElementById("teacherName");
+const teacherDept = document.getElementById("teacherDept");
+const teacherPhoto = document.getElementById("teacherPhoto");
+const profilePreview = document.getElementById("profilePreview");
+
+const name = document.getElementById("name");
+const department = document.getElementById("department");
+const email = document.getElementById("email");
+const phone = document.getElementById("phone");
+const designation = document.getElementById("designation");
+const qualification = document.getElementById("qualification");
+const experience = document.getElementById("experience");
+
+const photoInput = document.getElementById("photoInput");
+let selectedPhoto = null;
+let currentUser = null;
+
+/* PHOTO PREVIEW */
+photoInput.onchange = () => {
+  selectedPhoto = photoInput.files[0];
+  if (selectedPhoto) profilePreview.src = URL.createObjectURL(selectedPhoto);
+};
+
+/* AUTH */
 onAuthStateChanged(auth, async (user) => {
-  if (!user) location = "auth.html";
+  if (!user) return location.href = "auth.html";
+  currentUser = user;
+  email.value = user.email;
 
   const snap = await getDoc(doc(db, "users", user.uid));
-  if (!snap.exists() || snap.data().role !== "teacher") {
-    await signOut(auth);
-    location = "auth.html";
+  if (snap.exists()) {
+    const p = snap.data();
+    name.value = p.name || "";
+    department.value = p.department || "";
+    phone.value = p.phone || "";
+    designation.value = p.designation || "";
+    qualification.value = p.qualification || "";
+    experience.value = p.experience || "";
+    teacherName.textContent = p.name || "Teacher";
+    teacherDept.textContent = p.department || "";
+    if (p.photoURL) {
+      teacherPhoto.src = p.photoURL;
+      profilePreview.src = p.photoURL;
+    }
+    if (!p.profileCompleted) modal.style.display = "grid";
+  } else {
+    modal.style.display = "grid";
   }
+
+  loadNotices();
 });
 
-window.logout = async () => {
-  await signOut(auth);
-  location = "auth.html";
+/* SAVE PROFILE */
+saveProfileBtn.onclick = async () => {
+  if (!name.value || !department.value || !phone.value) {
+    alert("Fill all required fields");
+    return;
+  }
+
+  let photoURL = null;
+  if (selectedPhoto) {
+    const imgRef = ref(storage, `faculty-profiles/${currentUser.uid}/profile.jpg`);
+    await uploadBytes(imgRef, selectedPhoto);
+    photoURL = await getDownloadURL(imgRef);
+  }
+
+  await setDoc(doc(db, "users", currentUser.uid), {
+    name: name.value,
+    department: department.value,
+    email: email.value,
+    phone: phone.value,
+    designation: designation.value,
+    qualification: qualification.value,
+    experience: experience.value,
+    photoURL,
+    role: "teacher",
+    profileCompleted: true,
+    updatedAt: serverTimestamp()
+  }, { merge: true });
+
+  teacherName.textContent = name.value;
+  teacherDept.textContent = department.value;
+  if (photoURL) teacherPhoto.src = photoURL;
+
+  modal.style.display = "none";
+  alert("Profile saved successfully ✅");
 };
+
+/* OPEN MODAL */
+editProfileBtn.onclick = () => modal.style.display = "grid";
+
+/* LOGOUT */
+logoutBtn.onclick = async () => {
+  await signOut(auth);
+  location.href = "login.html";
+};
+
+/* LOAD NOTICES */
+async function loadNotices() {
+  const q = query(collection(db, "notices"), orderBy("createdAt", "desc"));
+  const snap = await getDocs(q);
+  document.getElementById("noticeCount").textContent = snap.size;
+  const list = document.getElementById("noticeList");
+  list.innerHTML = "";
+  snap.docs.slice(0,5).forEach(d => {
+    const n = d.data();
+    list.innerHTML += `<div class="notice"><strong>${n.title}</strong><div class="small">${n.message}</div></div>`;
+  });
+}
 </script>
+
 </body>
 </html>
