@@ -1,202 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faculty - Department of Computer Science and Engineering</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/responsive.css">
-    <link rel="icon" type="image/png" href="../Images/Mahendra-logo.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faculty - CSE Department</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/responsive.css">
+<link rel="stylesheet" href="../css/faculty.css">
+<link rel="icon" href="../Images/Mahendra-logo.png">
 </head>
+
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                 <img src="../Images/Collegelogo.png" alt="College Logo" class="college-logo">
-                    <div class="logo-text">
-                         <h1>MAHENDRA COLLEGE OF ENGINEERING</h1>
-                        <h1>Department of Computer Science and Engineering</h1>
-                        <p>Excellence in Education and Research</p>
-                    </div>
+
+<!-- ===== HEADER (UNCHANGED) ===== -->
+<header>
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <img src="../Images/Collegelogo.png" class="college-logo">
+                <div class="logo-text">
+                    <h1>MAHENDRA COLLEGE OF ENGINEERING</h1>
+                    <h1>Department of Computer Science and Engineering</h1>
+                    <p>Excellence in Education and Research</p>
                 </div>
-                <nav>
-                    <div class="mobile-menu">
-                        <i class="fas fa-bars"></i>
-                    </div>
-                    <ul>
-                        <li><a href="../index.html" class="nav-link">Home</a></li>
-                      <li><a href="faculty.html" class="nav-link">Faculty</a></li>
-                        <li><a href="login.html" class="nav-link">login</a></li>
-                        <li><a href="labs.html" class="nav-link">Labs</a></li>
-                        <li><a href="achievements.html" class="nav-link">Achievements</a></li>
-                    </ul>
-                </nav>
             </div>
+            <nav>
+                <div class="mobile-menu"><i class="fas fa-bars"></i></div>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="faculty.html" class="active">Faculty</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="labs.html">Labs</a></li>
+                    <li><a href="achievements.html">Achievements</a></li>
+                </ul>
+            </nav>
         </div>
-    </header>
+    </div>
+</header>
 
-    <!-- Page Header -->
-    <section class="page-header">
-        <div class="container">
-            <h1>Head of Department</h1>
+<!-- ===== PAGE HEADER ===== -->
+<section class="page-header">
+    <div class="container">
+        <h1>Our Faculty</h1>
+    </div>
+</section>
+
+<!-- ===== FACULTY LIST ===== -->
+<section class="faculty-section container">
+
+<h2>Head of Department</h2>
+<div class="faculty-grid">
+    <div class="faculty-card" onclick="openFaculty('hod')">
+        <img src="../Images/faculty/hod.jpg">
+        <p>Dr. H. Lilly Beaulah</p>
+    </div>
+</div>
+
+<h2>Technical Faculties</h2>
+<div class="faculty-grid">
+    <div class="faculty-card" onclick="openFaculty('dhanakodi')">
+        <img src="../Images/faculty/Dhanakodiv.jpg">
+        <p>Ms. Dhanakodi V</p>
+    </div>
+
+    <div class="faculty-card" onclick="openFaculty('gayathiri')">
+        <img src="../Images/faculty/gayathiri.jpg">
+        <p>Mrs. Gayathiri M</p>
+    </div>
+
+    <div class="faculty-card" onclick="openFaculty('sakthivel')">
+        <img src="../Images/faculty/sakthivel.jpg">
+        <p>Mr. Sakthivel P</p>
+    </div>
+</div>
+
+</section>
+
+<!-- ===== GAME STYLE POPUP ===== -->
+<div class="faculty-modal" id="facultyModal">
+    <div class="game-popup">
+        <button class="close-btn" onclick="closeFaculty()">✖</button>
+
+        <div class="avatar-frame">
+            <img id="m-img">
         </div>
-    </section>
 
-    <!-- HOD Content -->
-    <main>
-        <section class="hod-details">
-            <div class="container">
-                <div class="profile-card">
-                    <div class="profile-img">
-                        <!-- Replace with actual image -->
-                        <i class="fas fa-user-tie"></i>
-                    </div>
-                    <div class="profile-info">
-                        <h2>Dr H.Lilly Beaulah</h2>
-                        <h3>Professor & Head of Department</h3>
-                        <p>Dr.  H.Lilly Beaulah is a distinguished academic with over 30 years of experience in computer science education and research. She holds a Ph.D. in Computer Science from Stanford University and has published numerous research papers in top-tier journals.</p>
-                        <p>Her research interests include machine learning, natural language processing, and computer vision. Under her leadership, the department has seen significant growth in research output and industry collaborations.</p>
-                        <p>Dr.  H.Lilly Beaulah has received several awards for her contributions to computer science education, including the "Outstanding Educator Award" from the Association for Computing Machinery.</p>
-                        <p><strong>Email:</strong> hodcse@mahendacollege.com</p>
-                        <p><strong>Phone:</strong> +91 94877 92406</p>
-                    </div>
-                </div>
+        <h2 id="m-name"></h2>
+        <span id="m-role"></span>
 
-                <div class="section-title">
-                     <section class="staff-listing">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Techinical Faculties</h2>
-                </div>
-
-                <div class="staff-grid">
-                    <div class="staff-card">
-                        <div class="staff-img">
-                            <!-- Replace with actual image -->
-                            <i class="fas fa-user-graduate"></i>
-                        </div>
-                        <div class="staff-info">
-                            <h3>Ms. Dhanakodi V</h3>
-                            <p>Assistant Professor</p>
-                            <p><strong>Specialization:</strong> Data Science & Big Data Analytics</p>
-                            <p><strong>Email:</strong> dhanakodiv@mahendacollege.com</p>
-                            <p><strong>Research:</strong> Machine Learning, Data Mining, Predictive Analytics</p>
-                        </div>
-                    </div>
-
-                    <div class="staff-card">
-                        <div class="staff-img">
-                            <i class="fas fa-user-graduate"></i>
-                        </div>
-                        <div class="staff-info">
-                            <h3>Mrs. Gayathiri M</h3>
-                            <p>Assistant Professor</p>
-                            <p><strong>Specialization:</strong> Cybersecurity & Network Security</p>
-                            <p><strong>Email:</strong> gayathirim@mahendracollege.com</p>
-                            <p><strong>Research:</strong> Cryptography, Network Defense, Cyber Threat Intelligence</p>
-                        </div>
-                    </div>
-
-                    <div class="staff-card">
-                        <div class="staff-img">
-                            <i class="fas fa-user-graduate"></i>
-                        </div>
-                        <div class="staff-info">
-                            <h3>Mr. Sakthivel P</h3>
-                            <p>Professor</p>
-                            <p><strong>Specialization:</strong> Artificial Intelligence & Machine Learning</p>
-                            <p><strong>Email:</strong> sakthivelp@mahendracollege.com</p>
-                            <p><strong>Research:</strong> Deep Learning, Computer Vision, Natural Language Processing</p>
-                        </div>
-                    </div>
-
-                    <div class="staff-card">
-                        <div class="staff-img">
-                            <i class="fas fa-user-graduate"></i>
-                        </div>
-                        <div class="staff-info">
-                            <h3>Mr. Dhivyarani P</h3>
-                            <p>Associate Professor</p>
-                            <p><strong>Specialization:</strong> Software Engineering & DevOps</p>
-                            <p><strong>Email:</strong> dhivyaranip@mahendracollege.com</p>
-                            <p><strong>Research:</strong> Agile Methodologies, CI/CD, Software Quality Assurance</p>
-                        </div>
-                    </div>
-
-                    <div class="staff-card">
-                        <div class="staff-img">
-                            <i class="fas fa-user-graduate"></i>
-                        </div>
-                        <div class="staff-info">
-                            <h3>Mr. Riyaz B</h3>
-                            <p>Assistant Professor</p>
-                            <p><strong>Specialization:</strong> Cloud Computing & Distributed Systems</p>
-                            <p><strong>Email:</strong> riyazb@mahendracollege.com</p>
-                            <p><strong>Research:</strong> Edge Computing, Microservices, Containerization</p>
-                        </div>
-                    </div>
-
-                    <div class="staff-card">
-                        <div class="staff-img">
-                            <i class="fas fa-user-graduate"></i>
-                        </div>
-                        <div class="staff-info">
-                            <h3>Mr. Anandraj M</h3>
-                            <p>Professor</p>
-                            <p><strong>Specialization:</strong> Human-Computer Interaction & UX Design</p>
-                            <p><strong>Email:</strong> anandrajm@mahendracollege.com</p>
-                            <p><strong>Research:</strong> User Experience, Accessibility, Interaction Design</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="section-title">
-                    <h2>Administrative Staff</h2>
-                </div>
-
-                <div class="staff-grid">
-                    <div class="staff-card">
-                        <div class="staff-img">
-                            <i class="fas fa-user-tie"></i>
-                        </div>
-                        <div class="staff-info">
-                            <h3>Mrs. Devadharshini R</h3>
-                            <p>Department Administrator</p>
-                            <p><strong>Email:</strong> devadharshinir@mahendacollege.com</p>
-                            <p><strong>Responsibilities:</strong> Department Operations, Budget Management</p>
-                        </div>
-                    </div>
-
-                    <div class="staff-card">
-                        <div class="staff-img">
-                            <i class="fas fa-user-tie"></i>
-                        </div>
-                        <div class="staff-info">
-                            <h3>Mr. Lokeshkumar</h3>
-                            <p>Lab Coordinator</p>
-                            <p><strong>Email:</strong> lokeshkumar@mahendracollege.com</p>
-                            <p><strong>Responsibilities:</strong> Lab Maintenance, Equipment Management</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-            <div class="copyright">
-                <p>&copy; 2025 Department of Computer Science and Engineering. All Rights Reserved.</p>
-            </div>
+        <div class="stats">
+            <p id="m-spec"></p>
+            <p id="m-email"></p>
+            <p id="m-exp"></p>
         </div>
-    </footer>
+    </div>
+</div>
 
-    <script src="../js/navigation.js"></script>
-    <script src="../js/main.js"></script>
-    <script src="../js/achievements.js"></script>
+<!-- ===== FOOTER (UNCHANGED) ===== -->
+<footer>
+    <div class="copyright">
+        <p>&copy; 2025 Department of Computer Science and Engineering. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script src="../js/navigation.js"></script>
+<script src="../js/faculty.js"></script>
 </body>
 </html>
