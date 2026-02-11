@@ -1,13 +1,16 @@
 /* FACULTY GRID */
 .faculty-section h2 {
     margin: 35px 0 15px;
-    color: #0a1f44;
+    color: white;
+    text-align: center;
+    text-size-adjust: 20px;
 }
 
 .faculty-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 25px;
+    
 }
 
 .faculty-card {
